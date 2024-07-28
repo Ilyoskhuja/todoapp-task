@@ -1,0 +1,13 @@
+<div class="todo-list-container">
+  <h2>Todo List</h2>
+  <ul>
+    <li *ngFor="let todo of todos">
+      <span [class.completed]="todo.completed">{{ todo.title }}</span>
+      <div>
+        <button (click)="delete(todo)">Delete</button>
+        <a [routerLink]="['/todos', todo.id]">Edit</a>
+      </div>
+    </li>
+  </ul>
+  <a routerLink="/todos/new">Add New Todo</a>
+</div>

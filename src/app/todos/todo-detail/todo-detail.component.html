@@ -1,0 +1,21 @@
+<div class="todo-detail-container" *ngIf="todo">
+  <h2>{{ todo.title }} Details</h2>
+  <form [formGroup]="todoForm" (ngSubmit)="save()">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input id="title" type="text" formControlName="title" placeholder="title"/>
+      <div *ngIf="todoForm.get('title')?.invalid && (todoForm.get('title')?.dirty || todoForm.get('title')?.touched)">
+        <small *ngIf="todoForm.get('title')?.errors?.['required']">Title is required.</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="completed">Completed:</label>
+      <input id="completed" type="checkbox" formControlName="completed"/>
+      <div *ngIf="todoForm.get('completed')?.invalid && (todoForm.get('completed')?.dirty || todoForm.get('completed')?.touched)">
+        <small *ngIf="todoForm.get('completed')?.errors?.['requiredTrue']">Completed is required.</small>
+      </div>
+    </div>
+    <button type="submit" [disabled]="todoForm.invalid">Save</button>
+    <button type="button" (click)="goBack()">Cancel</button>
+  </form>
+</div>
